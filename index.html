@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --black: #000000;
       --white: #ffffff;
@@ -23,6 +25,7 @@
       --nav-h: 72px;
       --transition: 0.35s cubic-bezier(.4,0,.2,1);
     }
+
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-body);
@@ -39,6 +42,7 @@
       background-size: 48px 48px;
       pointer-events: none; z-index: 0;
     }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
@@ -99,7 +103,9 @@
       transition: background var(--transition), color var(--transition);
     }
     .btn-solid:hover { background: var(--white); color: var(--black); }
+
     #app { padding-top: var(--nav-h); min-height: 100vh; position: relative; z-index: 1; }
+
     /* ── MODAL ── */
     .modal-backdrop {
       position: fixed; inset: 0;
@@ -147,6 +153,7 @@
     .modal-submit:hover { opacity: 0.78; }
     .modal-msg { text-align: center; font-size: 0.83rem; margin-top: 1rem; color: var(--gray-600); }
     .modal-msg span { color: var(--black); font-weight: 600; cursor: pointer; text-decoration: underline; }
+
     /* ── TOAST ── */
     .toast {
       position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
@@ -156,6 +163,7 @@
       z-index: 9999; white-space: nowrap;
       animation: slideUp .3s ease;
     }
+
     /* ── HERO ── */
     .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - var(--nav-h)); }
     .hero-left {
@@ -204,6 +212,7 @@
       cursor: pointer; transition: all var(--transition); text-decoration: none;
     }
     .hero-social:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+
     .hero-right {
       background: var(--white); display: flex; flex-direction: column;
       align-items: center; justify-content: center; padding: 4rem;
@@ -224,6 +233,7 @@
     .stat-item:last-child { border-right: none; }
     .stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1; }
     .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-400); margin-top: 0.3rem; }
+
     /* ── SECTIONS ── */
     .section { padding: 6rem 2rem; position: relative; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
@@ -239,6 +249,7 @@
       font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700;
       line-height: 1.1; letter-spacing: -0.02em;
     }
+
     /* ── ABOUT ── */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--black); }
     .about-left { background: var(--black); color: var(--white); padding: 3.5rem; }
@@ -262,6 +273,7 @@
     }
     .india-box strong { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; display: block; }
     .india-box span { font-size: 0.88rem; color: var(--gray-600); margin-top: 0.3rem; display: block; }
+
     /* ── SKILLS ── */
     .skills-section { background: var(--gray-100); }
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border: 1.5px solid var(--black); }
@@ -278,6 +290,7 @@
     .skill-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.8rem; }
     .skill-bar-bg { height: 3px; background: var(--gray-200); overflow: hidden; }
     .skill-bar-fill { height: 100%; background: var(--black); transition: width 1.5s cubic-bezier(.4,0,.2,1); }
+
     /* ── EXPERIENCE ── */
     .exp-timeline { position: relative; }
     .exp-line { position: absolute; left: 10px; top: 0; bottom: 0; width: 1.5px; background: var(--gray-200); }
@@ -297,6 +310,7 @@
     .exp-period { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 0.4rem; }
     .exp-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
     .exp-desc { font-size: 0.88rem; line-height: 1.85; color: var(--gray-600); }
+
     /* ── ACHIEVEMENTS ── */
     .ach-section { background: var(--black); color: var(--white); }
     .ach-section .section-label { color: rgba(255,255,255,0.35); }
@@ -310,6 +324,7 @@
     .ach-card ul { list-style: none; }
     .ach-card li { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.55); padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: flex-start; gap: 8px; }
     .ach-card li::before { content: '—'; opacity: 0.3; flex-shrink: 0; margin-top: 1px; }
+
     /* ── CONTACT ── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--black); }
     .contact-info { background: var(--black); color: var(--white); padding: 3.5rem; }
@@ -337,16 +352,20 @@
       cursor: pointer; transition: background var(--transition), color var(--transition); margin-top: 0.5rem;
     }
     .btn-submit:hover { background: var(--white); color: var(--black); }
+
     /* ── FOOTER ── */
     footer { background: var(--black); color: var(--white); border-top: 1.5px solid rgba(255,255,255,0.08); padding: 2rem; }
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
     .footer-copy { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero, .about-grid, .contact-grid { grid-template-columns: 1fr; }
@@ -364,6 +383,7 @@
   </style>
 </head>
 <body>
+
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
@@ -384,6 +404,7 @@
     </div>
   </div>
 </nav>
+
 <!-- MODAL -->
 <div class="modal-backdrop" id="modal" style="display:none;">
   <div class="modal-box">
@@ -406,9 +427,12 @@
     </div>
   </div>
 </div>
+
 <div class="toast" id="toast" style="display:none;"></div>
+
 <!-- APP -->
 <div id="app">
+
   <!-- HOME -->
   <section id="page-home">
     <div class="hero">
@@ -434,15 +458,12 @@
       </div>
       <div class="hero-right">
         <div class="profile-frame">
- <img src="Shubham2.jpg" alt="Shubham Patel" class="profile-img"
-       onerror="this.src='https://techindro.github.io/Shubham-patel-portfolio//shubham-logo.png'" />
-</div>
-</div>
- 
-    <!-- ... your stats remain same ... -->
+          <img src="Shubham2.jpg" alt="Shubham Patel" class="profile-img"
+             onerror="this.src='https://techindro.github.io/Shubham-patel-portfolio/'" />
+        </div>
         <div class="hero-stats">
           <div class="stat-item">
-            <div class="stat-num">100k+</div>
+            <div class="stat-num">2.5L+</div>
             <div class="stat-label">Learners</div>
           </div>
           <div class="stat-item">
@@ -457,6 +478,7 @@
       </div>
     </div>
   </section>
+
   <!-- ABOUT -->
   <section id="page-about" class="section" style="display:none;">
     <div class="section-inner">
@@ -494,6 +516,7 @@
       </div>
     </div>
   </section>
+
   <!-- SKILLS -->
   <section id="page-skills" class="section skills-section" style="display:none;">
     <div class="section-inner">
@@ -513,6 +536,7 @@
       </div>
     </div>
   </section>
+
   <!-- EXPERIENCE -->
   <section id="page-experience" class="section" style="display:none;">
     <div class="section-inner">
@@ -533,6 +557,7 @@
       </div>
     </div>
   </section>
+
   <!-- ACHIEVEMENTS -->
   <section id="page-achievements" class="section ach-section" style="display:none;">
     <div class="section-inner">
@@ -566,6 +591,7 @@
       </div>
     </div>
   </section>
+
   <!-- CONTACT -->
   <section id="page-contact" class="section" style="display:none;">
     <div class="section-inner">
@@ -590,8 +616,8 @@
         <div class="contact-form-wrap">
           <form onsubmit="handleContact(event)">
             <div class="form-row">
-              <div class="form-field"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Shubham" required /></div>
-              <div class="form-field"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Patel" /></div>
+              <div class="form-field"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Rahul" required /></div>
+              <div class="form-field"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Sharma" /></div>
             </div>
             <div class="form-field"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com" required /></div>
             <div class="form-field"><label class="form-label">Subject</label><input class="form-input" type="text" placeholder="Collaboration / Mentorship / General" required /></div>
@@ -602,7 +628,9 @@
       </div>
     </div>
   </section>
+
 </div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">Shubham Patel</div>
@@ -610,17 +638,20 @@
     <div class="footer-copy">Built with passion for India's future</div>
   </div>
 </footer>
+
 <script>
   let currentPage = 'home';
   let authMode = 'login';
   const USERS_KEY = 'sp_users';
   const CURR_KEY = 'sp_current';
   const MSG_KEY = 'sp_messages';
+
   // Scroll handler
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
     initReveals();
   });
+
   // Navigation
   function navigateTo(page) {
     document.getElementById('page-' + currentPage).style.display = 'none';
@@ -630,6 +661,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(initReveals, 80);
   }
+
   // Reveal on scroll
   const observed = new Set();
   function initReveals() {
@@ -645,6 +677,7 @@
       }
     });
   }
+
   // Modal
   function openModal(mode) {
     authMode = mode;
@@ -653,6 +686,7 @@
   }
   function closeModal() { document.getElementById('modal').style.display = 'none'; }
   document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+
   function switchTab(mode) {
     authMode = mode;
     const s = mode === 'signup';
@@ -667,12 +701,14 @@
       ? 'Already have an account? <span onclick="switchTab(\'login\')">Log in</span>'
       : 'Don\'t have an account? <span onclick="switchTab(\'signup\')">Sign up free</span>';
   }
+
   // Auth (localStorage backend simulation)
   function handleAuth(e) {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
     const email = document.getElementById('auth-email').value.trim();
     const password = document.getElementById('auth-password').value;
+
     if (authMode === 'signup') {
       const name = document.getElementById('auth-name').value.trim();
       const confirm = document.getElementById('auth-confirm').value;
@@ -694,6 +730,7 @@
       showToast('✓ Welcome back, ' + user.name + '!');
     }
   }
+
   // Contact form
   function handleContact(e) {
     e.preventDefault();
@@ -708,6 +745,7 @@
     e.target.reset();
     showToast('✓ Message sent! I\'ll get back to you soon.');
   }
+
   // Toast
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -715,8 +753,9 @@
     clearTimeout(t._timer);
     t._timer = setTimeout(() => { t.style.display = 'none'; }, 3200);
   }
+
   // Init
   setTimeout(initReveals, 100);
 </script>
 </body>
-</html> mai chahta hu ki jo 100k wala section hai vo photo ke niche right me ho vahi fix kar do na ki niche
+</html>
