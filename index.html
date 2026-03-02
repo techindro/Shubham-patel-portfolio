@@ -39,8 +39,7 @@
       background-size: 48px 48px;
       pointer-events: none; z-index: 0;
     }
-
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-h);
@@ -100,10 +99,64 @@
       transition: background var(--transition), color var(--transition);
     }
     .btn-solid:hover { background: var(--white); color: var(--black); }
-
     #app { padding-top: var(--nav-h); min-height: 100vh; position: relative; z-index: 1; }
-
-    /* HERO */
+    /* ── MODAL ── */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      animation: fadeIn .2s ease;
+    }
+    .modal-box {
+      background: var(--white); border: 2px solid var(--black);
+      width: 90%; max-width: 420px; padding: 3rem 2.5rem;
+      animation: slideUp .3s ease; position: relative;
+    }
+    .modal-box h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .modal-box > p { color: var(--gray-600); font-size: 0.88rem; margin-bottom: 2rem; }
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--gray-400);
+      transition: color var(--transition);
+    }
+    .modal-close:hover { color: var(--black); }
+    .modal-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.8rem; }
+    .modal-tab {
+      flex: 1; padding: 0.55rem;
+      font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: 1.5px solid var(--gray-200); background: none; color: var(--gray-400);
+      cursor: pointer; transition: all var(--transition);
+    }
+    .modal-tab.active { border-color: var(--black); background: var(--black); color: var(--white); }
+    .modal-field {
+      width: 100%; font-family: var(--font-body); font-size: 0.92rem;
+      border: 1.5px solid var(--gray-200); background: var(--gray-100);
+      padding: 0.75rem 1rem; margin-bottom: 0.9rem;
+      color: var(--black); transition: border-color var(--transition), background var(--transition);
+    }
+    .modal-field:focus { outline: none; border-color: var(--black); background: var(--white); }
+    .modal-submit {
+      width: 100%; padding: 0.85rem;
+      background: var(--black); color: var(--white); border: none; cursor: pointer;
+      font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      transition: opacity var(--transition); margin-top: 0.3rem;
+    }
+    .modal-submit:hover { opacity: 0.78; }
+    .modal-msg { text-align: center; font-size: 0.83rem; margin-top: 1rem; color: var(--gray-600); }
+    .modal-msg span { color: var(--black); font-weight: 600; cursor: pointer; text-decoration: underline; }
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      background: var(--black); color: var(--white);
+      padding: 0.75rem 2rem; font-family: var(--font-mono);
+      font-size: 0.82rem; letter-spacing: 0.04em;
+      z-index: 9999; white-space: nowrap;
+      animation: slideUp .3s ease;
+    }
+    /* ── HERO ── */
     .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - var(--nav-h)); }
     .hero-left {
       background: var(--black); color: var(--white);
@@ -130,7 +183,9 @@
       margin-bottom: 1.8rem; letter-spacing: -0.03em;
     }
     .hero-role { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.9; margin-bottom: 3rem; }
-    .hero-cta { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .hero-cta {
+      display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+    }
     .cta-btn {
       font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
       letter-spacing: 0.07em; text-transform: uppercase;
@@ -149,17 +204,11 @@
       cursor: pointer; transition: all var(--transition); text-decoration: none;
     }
     .hero-social:hover { background: var(--white); color: var(--black); border-color: var(--white); }
-
     .hero-right {
-      background: var(--white);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;           /* Changed from center */
-      justify-content: center;
-      padding: 4rem 4rem 4rem 2rem;      /* more right padding */
+      background: var(--white); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 4rem;
     }
-
-    .profile-frame { position: relative; margin-bottom: 2rem; }
+    .profile-frame { position: relative; margin-bottom: 3rem; }
     .profile-frame::before {
       content: ''; position: absolute; top: -14px; left: -14px; right: 14px; bottom: 14px;
       border: 2px solid var(--black); z-index: 0;
@@ -170,22 +219,12 @@
       filter: grayscale(25%); transition: filter var(--transition), transform var(--transition);
     }
     .profile-frame:hover .profile-img { filter: grayscale(0%); transform: translate(8px, 8px); }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      width: 100%;
-      max-width: 340px;                   /* ← limits width so it doesn't stretch full */
-      border: 1.5px solid var(--black);
-      align-self: flex-end;               /* ← this pushes it to the right */
-      margin-left: auto;                  /* extra right alignment safety */
-    }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; border: 1.5px solid var(--black); }
     .stat-item { padding: 1.5rem 1rem; text-align: center; border-right: 1.5px solid var(--black); }
     .stat-item:last-child { border-right: none; }
     .stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1; }
     .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-400); margin-top: 0.3rem; }
-
-    /* ── SECTIONS (common) ── */
+    /* ── SECTIONS ── */
     .section { padding: 6rem 2rem; position: relative; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
     .section-header { margin-bottom: 4rem; }
@@ -200,36 +239,132 @@
       font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700;
       line-height: 1.1; letter-spacing: -0.02em;
     }
-
-    /* Rest of your styles (about, skills, experience, achievements, contact, footer, animations, etc.) remain unchanged */
-
-    /* RESPONSIVE */
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--black); }
+    .about-left { background: var(--black); color: var(--white); padding: 3.5rem; }
+    .about-right { background: var(--white); padding: 3.5rem; }
+    .about-left h3, .about-right h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .about-left p { font-size: 0.92rem; line-height: 1.9; color: rgba(255,255,255,0.7); margin-bottom: 1.1rem; }
+    .about-right p { font-size: 0.92rem; line-height: 1.9; color: var(--gray-600); margin-bottom: 1.1rem; }
+    .quote-block {
+      border-left: 3px solid rgba(255,255,255,0.25); padding: 0.9rem 1.4rem;
+      margin: 1.8rem 0; font-style: italic;
+      font-family: var(--font-display); font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.6;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .badge {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2); padding: 0.25rem 0.7rem; color: rgba(255,255,255,0.65);
+    }
+    .badge-w { border: 1px solid var(--gray-200); color: var(--gray-600); }
+    .india-box {
+      margin-top: 2rem; padding: 1.5rem; border: 1.5px solid var(--black); text-align: center;
+    }
+    .india-box strong { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; display: block; }
+    .india-box span { font-size: 0.88rem; color: var(--gray-600); margin-top: 0.3rem; display: block; }
+    /* ── SKILLS ── */
+    .skills-section { background: var(--gray-100); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border: 1.5px solid var(--black); }
+    .skill-card {
+      padding: 2.5rem; border-right: 1.5px solid var(--black); border-bottom: 1.5px solid var(--black);
+      transition: background var(--transition), color var(--transition); cursor: default;
+    }
+    .skill-card:hover { background: var(--black); color: var(--white); }
+    .skill-card:hover .skill-bar-bg { background: rgba(255,255,255,0.1); }
+    .skill-card:hover .skill-bar-fill { background: var(--white); }
+    .skill-card:hover .skill-pct { color: rgba(255,255,255,0.45); }
+    .skill-icon { font-size: 1.6rem; margin-bottom: 1.2rem; }
+    .skill-name { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .skill-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.8rem; }
+    .skill-bar-bg { height: 3px; background: var(--gray-200); overflow: hidden; }
+    .skill-bar-fill { height: 100%; background: var(--black); transition: width 1.5s cubic-bezier(.4,0,.2,1); }
+    /* ── EXPERIENCE ── */
+    .exp-timeline { position: relative; }
+    .exp-line { position: absolute; left: 10px; top: 0; bottom: 0; width: 1.5px; background: var(--gray-200); }
+    .exp-item { padding-left: 3.5rem; margin-bottom: 2.5rem; position: relative; }
+    .exp-dot {
+      position: absolute; left: 0; top: 6px;
+      width: 22px; height: 22px; background: var(--white);
+      border: 2px solid var(--black); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .exp-dot::after { content: ''; width: 8px; height: 8px; background: var(--black); border-radius: 50%; }
+    .exp-card {
+      border: 1.5px solid var(--gray-200); padding: 2rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .exp-card:hover { border-color: var(--black); box-shadow: 6px 6px 0 var(--black); }
+    .exp-period { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 0.4rem; }
+    .exp-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .exp-desc { font-size: 0.88rem; line-height: 1.85; color: var(--gray-600); }
+    /* ── ACHIEVEMENTS ── */
+    .ach-section { background: var(--black); color: var(--white); }
+    .ach-section .section-label { color: rgba(255,255,255,0.35); }
+    .ach-section .section-label::before { background: rgba(255,255,255,0.35); }
+    .ach-section .section-title { color: var(--white); }
+    .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border: 1.5px solid rgba(255,255,255,0.12); }
+    .ach-card { padding: 2.5rem; border-right: 1.5px solid rgba(255,255,255,0.12); border-bottom: 1.5px solid rgba(255,255,255,0.12); transition: background var(--transition); }
+    .ach-card:hover { background: rgba(255,255,255,0.04); }
+    .ach-icon { font-size: 1.8rem; margin-bottom: 1.4rem; opacity: 0.75; }
+    .ach-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; }
+    .ach-card ul { list-style: none; }
+    .ach-card li { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.55); padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: flex-start; gap: 8px; }
+    .ach-card li::before { content: '—'; opacity: 0.3; flex-shrink: 0; margin-top: 1px; }
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--black); }
+    .contact-info { background: var(--black); color: var(--white); padding: 3.5rem; }
+    .contact-info h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    .contact-info p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.85; margin-bottom: 2.5rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .c-icon { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; flex-shrink: 0; }
+    .c-text { font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+    .contact-form-wrap { padding: 3.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .form-label { display: block; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 0.4rem; }
+    .form-input {
+      width: 100%; font-family: var(--font-body); font-size: 0.88rem;
+      border: 1.5px solid var(--gray-200); background: var(--gray-100);
+      padding: 0.75rem 1rem; color: var(--black);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .form-input:focus { outline: none; border-color: var(--black); background: var(--white); }
+    textarea.form-input { min-height: 120px; resize: vertical; }
+    .btn-submit {
+      width: 100%; padding: 1rem; background: var(--black); color: var(--white);
+      border: 2px solid var(--black); font-family: var(--font-body);
+      font-size: 0.83rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; transition: background var(--transition), color var(--transition); margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--white); color: var(--black); }
+    /* ── FOOTER ── */
+    footer { background: var(--black); color: var(--white); border-top: 1.5px solid rgba(255,255,255,0.08); padding: 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+    .footer-copy { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero, .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .hero-left { padding: 4rem 2rem 3rem; }
-      .hero-right {
-        align-items: center;
-        padding: 3rem 2rem;
-      }
-      .hero-stats {
-        align-self: center;
-        max-width: 100%;
-      }
-      .nav-center { display: none; }
+      .hero-right { padding: 3rem 2rem; }
       .form-row { grid-template-columns: 1fr; }
+      .nav-center { display: none; }
     }
-
     @media (max-width: 600px) {
       .profile-img { width: 200px; height: 200px; }
-      .hero-stats { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; border: 1.5px solid var(--black); }
       .stat-item { border-right: none; border-bottom: 1.5px solid var(--black); }
       .stat-item:last-child { border-bottom: none; }
     }
   </style>
 </head>
 <body>
-
-<!-- NAV (unchanged) -->
+<!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
     <button class="nav-logo" onclick="navigateTo('home')">
@@ -249,8 +384,7 @@
     </div>
   </div>
 </nav>
-
-<!-- MODAL (unchanged) -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="modal" style="display:none;">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -272,10 +406,8 @@
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast" style="display:none;"></div>
-
-<!-- MAIN CONTENT -->
+<!-- APP -->
 <div id="app">
   <!-- HOME -->
   <section id="page-home">
@@ -300,13 +432,14 @@
           <a href="https://youtube.com" target="_blank" class="hero-social"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-
       <div class="hero-right">
         <div class="profile-frame">
-          <img src="Shubham2.jpg" alt="Shubham Patel" class="profile-img"
-               onerror="this.src='https://techindro.github.io/Shubham-patel-portfolio//shubham-logo.png'" />
-        </div>
-
+ <img src="Shubham2.jpg" alt="Shubham Patel" class="profile-img"
+       onerror="this.src='https://techindro.github.io/Shubham-patel-portfolio//shubham-logo.png'" />
+</div>
+</div>
+ 
+    <!-- ... your stats remain same ... -->
         <div class="hero-stats">
           <div class="stat-item">
             <div class="stat-num">100k+</div>
@@ -324,7 +457,6 @@
       </div>
     </div>
   </section>
-
   <!-- ABOUT -->
   <section id="page-about" class="section" style="display:none;">
     <div class="section-inner">
@@ -362,11 +494,115 @@
       </div>
     </div>
   </section>
-
-  <!-- The rest of your sections (SKILLS, EXPERIENCE, ACHIEVEMENTS, CONTACT) remain exactly the same -->
-
+  <!-- SKILLS -->
+  <section id="page-skills" class="section skills-section" style="display:none;">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title">Skills & Tools</h2>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">AI & Machine Learning</div><div class="skill-pct">90%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">🦾</div><div class="skill-name">Robotics & Automation</div><div class="skill-pct">85%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">⚡</div><div class="skill-name">EV Systems</div><div class="skill-pct">80%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">📡</div><div class="skill-name">Remote Sensing & GIS</div><div class="skill-pct">78%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">🎙️</div><div class="skill-name">Public Speaking</div><div class="skill-pct">95%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">📈</div><div class="skill-name">Digital Marketing</div><div class="skill-pct">75%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">💼</div><div class="skill-name">Entrepreneurship</div><div class="skill-pct">88%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-card"><div class="skill-icon">🎬</div><div class="skill-name">Content Creation</div><div class="skill-pct">82%</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+      </div>
+    </div>
+  </section>
+  <!-- EXPERIENCE -->
+  <section id="page-experience" class="section" style="display:none;">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-label">Career</div>
+        <h2 class="section-title">Professional Experience</h2>
+      </div>
+      <div class="exp-timeline reveal">
+        <div class="exp-line"></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2023 — Present</div><div class="exp-title">Founder & CEO — Tech Indro</div><div class="exp-desc">Mission-driven initiative educating students in AI, Robotics, AR/VR, IoT, Cloud Computing, and Industry 4.0. Community of 1.5–2.5 lakh+ learners. Promotes early-age Student-preneurship and is building the foundation for a Robotics and Data Annotation platform.</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2024 — Present</div><div class="exp-title">Education Mentor — Topmate</div><div class="exp-desc">Guiding students in technology and entrepreneurship via 1:1 mentorship sessions, helping them build successful careers in the tech industry.</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2023 — Present</div><div class="exp-title">NVIDIA Forum Community Contributor</div><div class="exp-desc">Active contributor on NVIDIA's official Developer Forum — discussing Omniverse, CUDA, AI/ML technologies, software, and hardware with global developers and researchers.</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2023</div><div class="exp-title">Trainee — ISRO (IIRS Outreach Program)</div><div class="exp-desc">Completed the IIRS Outreach Program on Remote Sensing and Digital Image Analysis — hands-on in satellite image interpretation, GIS, and geospatial data for environmental monitoring, urban planning, and disaster management.</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2023 — 2024</div><div class="exp-title">Health Insurance Adviser — Turtlemint</div><div class="exp-desc">Delivered data-driven insurance solutions, helping clients make informed decisions about health coverage with clarity and confidence.</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2022 — Present</div><div class="exp-title">Social Creator — Instagram & YouTube</div><div class="exp-desc">Built a thriving tech community with engaging content on AI, robotics, and space technology. "Empowering dreams — AI & Robotics will build a stronger India 🇮🇳"</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2022 — Present</div><div class="exp-title">Affiliate Marketer — Amazon Associates (Introbox)</div><div class="exp-desc">Running Introbox — a savings-focused channel connecting users with exclusive deals across tech, fashion, and home essentials. "Open the door to your dreams with Introbox."</div></div></div>
+        <div class="exp-item"><div class="exp-dot"></div><div class="exp-card"><div class="exp-period">2022 — Present</div><div class="exp-title">Freelancer — Freelancer.io</div><div class="exp-desc">Delivered global software and digital marketing solutions to international clients, building a reputation for quality and creative problem-solving.</div></div></div>
+      </div>
+    </div>
+  </section>
+  <!-- ACHIEVEMENTS -->
+  <section id="page-achievements" class="section ach-section" style="display:none;">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-label">Recognition</div>
+        <h2 class="section-title">Achievements &amp; Publications</h2>
+      </div>
+      <div class="ach-grid reveal">
+        <div class="ach-card"><div class="ach-icon">🏆</div><h3>Awards</h3><ul>
+          <li>Excellence in Digital Image Processing — IIRS-ISRO, 2025</li>
+          <li>Entrepreneurship Innovation Award — Startup School, 2024</li>
+          <li>Best Tech Educator — Community Recognition, 2023</li>
+        </ul></div>
+        <div class="ach-card"><div class="ach-icon">📄</div><h3>Publications</h3><ul>
+          <li>AI Applications in Space Technology — Journal of Remote Sensing, 2025</li>
+          <li>Robotics & EV Systems Integration — Tech Indro Whitepaper, 2024</li>
+          <li>Student-preneurship in India — Digital India Initiative, 2024</li>
+        </ul></div>
+        <div class="ach-card"><div class="ach-icon">🎓</div><h3>Certifications</h3><ul>
+          <li>Advanced AI & Machine Learning — Stanford University</li>
+          <li>Space Technology & Applications — ISRO</li>
+          <li>Digital Marketing Professional — Google</li>
+          <li>NVIDIA Omniverse Developer</li>
+        </ul></div>
+        <div class="ach-card"><div class="ach-icon">🌐</div><h3>Community Impact</h3><ul>
+          <li>2.5 Lakh+ learners across platforms</li>
+          <li>500+ students personally mentored</li>
+          <li>Regular speaker at tech conferences</li>
+          <li>NVIDIA Developer Forum contributor</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+  <section id="page-contact" class="section" style="display:none;">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-label">Reach Out</div>
+        <h2 class="section-title">Let's Connect</h2>
+      </div>
+      <div class="contact-grid reveal">
+        <div class="contact-info">
+          <h3>Start a<br/>Conversation</h3>
+          <p>Always open to collaborations, mentorships, and meaningful discussions about technology and innovation for India's future.</p>
+          <div class="contact-item"><div class="c-icon"><i class="fas fa-envelope"></i></div><div class="c-text">Shubhamkumarpatel45@gmail.com</div></div>
+          <div class="contact-item"><div class="c-icon"><i class="fas fa-phone"></i></div><div class="c-text">+91 7007896695</div></div>
+          <div class="contact-item"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><div class="c-text">Agra, Uttar Pradesh, India</div></div>
+          <div class="hero-socials" style="margin-top:2rem;">
+            <a href="https://linkedin.com" target="_blank" class="hero-social"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com" target="_blank" class="hero-social"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com" target="_blank" class="hero-social"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" class="hero-social"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <form onsubmit="handleContact(event)">
+            <div class="form-row">
+              <div class="form-field"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Shubham" required /></div>
+              <div class="form-field"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Patel" /></div>
+            </div>
+            <div class="form-field"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com" required /></div>
+            <div class="form-field"><label class="form-label">Subject</label><input class="form-input" type="text" placeholder="Collaboration / Mentorship / General" required /></div>
+            <div class="form-field"><label class="form-label">Message</label><textarea class="form-input" placeholder="Tell me about your idea..." required></textarea></div>
+            <button type="submit" class="btn-submit">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
-
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">Shubham Patel</div>
@@ -374,20 +610,18 @@
     <div class="footer-copy">Built with passion for India's future</div>
   </div>
 </footer>
-
 <script>
-  // Your original script remains unchanged
   let currentPage = 'home';
   let authMode = 'login';
   const USERS_KEY = 'sp_users';
   const CURR_KEY = 'sp_current';
   const MSG_KEY = 'sp_messages';
-
+  // Scroll handler
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
     initReveals();
   });
-
+  // Navigation
   function navigateTo(page) {
     document.getElementById('page-' + currentPage).style.display = 'none';
     document.getElementById('page-' + page).style.display = 'block';
@@ -396,7 +630,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(initReveals, 80);
   }
-
+  // Reveal on scroll
   const observed = new Set();
   function initReveals() {
     document.querySelectorAll('#page-' + currentPage + ' .reveal').forEach(el => {
@@ -411,19 +645,14 @@
       }
     });
   }
-
+  // Modal
   function openModal(mode) {
     authMode = mode;
     document.getElementById('modal').style.display = 'flex';
     switchTab(mode);
   }
-
   function closeModal() { document.getElementById('modal').style.display = 'none'; }
-
-  document.getElementById('modal').addEventListener('click', e => {
-    if (e.target === document.getElementById('modal')) closeModal();
-  });
-
+  document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
   function switchTab(mode) {
     authMode = mode;
     const s = mode === 'signup';
@@ -438,7 +667,7 @@
       ? 'Already have an account? <span onclick="switchTab(\'login\')">Log in</span>'
       : 'Don\'t have an account? <span onclick="switchTab(\'signup\')">Sign up free</span>';
   }
-
+  // Auth (localStorage backend simulation)
   function handleAuth(e) {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
@@ -465,7 +694,7 @@
       showToast('✓ Welcome back, ' + user.name + '!');
     }
   }
-
+  // Contact form
   function handleContact(e) {
     e.preventDefault();
     const inputs = e.target.querySelectorAll('input, textarea');
@@ -479,15 +708,15 @@
     e.target.reset();
     showToast('✓ Message sent! I\'ll get back to you soon.');
   }
-
+  // Toast
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg; t.style.display = 'block';
     clearTimeout(t._timer);
     t._timer = setTimeout(() => { t.style.display = 'none'; }, 3200);
   }
-
+  // Init
   setTimeout(initReveals, 100);
 </script>
 </body>
-</html>
+</html> mai chahta hu ki jo 100k wala section hai vo photo ke niche right me ho vahi fix kar do na ki niche
