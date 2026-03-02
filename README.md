@@ -32,5 +32,5 @@ A modern, full-stack portfolio website with authentication, contact management, 
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/shubham-portfolio.git
-cd shubham-portfolio
+git clone https://github.com/techindro/Shubham-patel-portfolio.git
+cd shubham-patel-portfolio
