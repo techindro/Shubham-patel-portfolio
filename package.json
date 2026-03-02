@@ -1,0 +1,23 @@
+{
+  "name": "shubham-patel-portfolio",
+  "version": "1.0.0",
+  "description": "Full Stack Portfolio for Shubham Patel",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npx serve . -p 3000",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-server": "cd backend && npm install",
+    "install-client": "cd frontend && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": ["portfolio", "fullstack", "node", "mongodb"],
+  "author": "Shubham Patel",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1"
+  }
+}
