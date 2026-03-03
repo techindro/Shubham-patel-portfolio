@@ -15,6 +15,7 @@ A modern, full-stack portfolio website with authentication, contact management, 
 
 ## 🛠️ Tech Stack
 
+
 ### Frontend
 - HTML5, CSS3, JavaScript (Vanilla)
 - Font Awesome Icons
