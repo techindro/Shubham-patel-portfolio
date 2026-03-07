@@ -3,7 +3,7 @@
 A modern, full-stack portfolio website with authentication, contact management, and analytics.
 
 ## 🚀 Features
-
+ 
 - **Full Stack Architecture**: Node.js/Express backend with MongoDB database
 - **User Authentication**: JWT-based signup/login system
 - **Contact Management**: Store and manage contact form submissions
